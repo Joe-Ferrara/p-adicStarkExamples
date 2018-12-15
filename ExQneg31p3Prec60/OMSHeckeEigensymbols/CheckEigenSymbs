@@ -1,0 +1,38 @@
+# IPython log file
+
+load("master.sage")
+get_ipython().magic(u'cd ~/Desktop/SageCode/ThesisWorkExamples/ExQneg31p3Prec60/OMSHeckeEigensymbols/')
+get_ipython().magic(u'ls ')
+heckeEigenSymbs = load("heckeMinusEigenSymbs.sobj")
+phi = heckeEigenSymbs[Integer(0)]
+phi.is_Tq_eigen(Integer(2))
+#[Out]# [True, 127173474825648610542883299602, 61]
+phi.is_Tq_eigen(Integer(3))
+#[Out]# [True, 1, 61]
+phi = heckeEigenSymbs[Integer(1)]
+phi.is_Tq_eigen(Integer(2))
+#[Out]# [False, None, None]
+phi.is_Tq_eigen(Integer(3))
+#[Out]# [False, None, None]
+phiT2 = phi.hecke(Integer(2))
+(phiT2 - phi.scale(-Integer(1))).is_zero()
+#[Out]# True
+phiU3 = phi.hecke(Integer(3))
+(phiU3 - phi.scale(-Integer(1))).is_zero()
+#[Out]# True
+phi.is_zero()
+#[Out]# False
+phiT5 = phi.hecke(Integer(5))
+(phiT5 - phi.scale(-Integer(1))).is_zero()
+#[Out]# True
+phiT7 = phi.hecke(Integer(7))
+(phiT7 - phi.scale(-Integer(1))).is_zero()
+#[Out]# True
+phiT11 = phi.hecke(Integer(11))
+phiT11.is_zero()
+#[Out]# True
+phi.num_moments()
+#[Out]# 61
+## the command .is_Tq_eigen(q) does not say phi is an eigensymbol, but checking by hand says that phi is an eigensymbol
+## there must be a small bug in the .is_Tq_eigen(q) code - may look into this later
+quit()

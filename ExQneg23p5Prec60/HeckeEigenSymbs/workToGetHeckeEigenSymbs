@@ -1,0 +1,102 @@
+# IPython log file
+
+cd ../
+cd ../
+load("master.sage")
+cd ./ExQneg23p5Prec60/HeckeEigenSymbs/
+plusUp = load("plusUpEigenSymbs.sobj")
+len(plusUp[0])
+#[Out]# 2
+len(plusUp[1])
+#[Out]# 1
+load("Functions.sage")
+t2Vecs = []
+for phi in plusUp[0]:
+    t2Vecs.append(phi.hecke(2))
+p = 5
+basisMat = Matrix(Zmod(p**57), [phi.vector_of_total_measures() for phi in plusUp[0])
+basisMat = Matrix(Zmod(p**57), [phi.vector_of_total_measures() for phi in plusUp[0]])
+rows = []
+for phi in t2Vecs:
+    b = vector(Zmod(p**57), phi.vector_of_total_measures())
+    x = basisMat.solve_left(b)
+    rows.append(x)
+t2Mat = Matrix(Zmod(p**57), rows)
+t2MatModp = Matrix(Zmod(p), t2Mat)
+t2MatModp.characteristic_polynomial().factor()
+#[Out]# (x + 1) * (x + 3)
+t2Mat
+#[Out]# [3125803756053685909233045047983396162586 5515065078764602050318809289492572054417]
+#[Out]# [5317009387727624880887058155106933442951 3813090147853542468414652877584230790540]
+I = matrix.identity(2)
+I = Matrix(Zmod(p**57), I)
+E = t2Mat + I
+Ered = columnReduce(E, p)
+Ered
+#[Out]# [[                                       1                                        0]
+#[Out]# [5986724437790277423503403055768675323123                                        0], [1]]
+Ered = Ered[0]
+coeffs = [-Ered[0][0], 1]
+e = vector(Zmod(p**57), coeffs)
+e*Ered
+#[Out]# (5986724437790277423503403055768675323122, 0)
+coeffs = [-Ered[1][0], 1]
+e = vector(Zmod(p**57), coeffs)
+e*Ered
+#[Out]# (0, 0)
+eta = makeEigenSymb(coeffs, plusUp[0])
+for q in prime_range(2, 6):
+    print eta.is_Tq_eigen(q)
+heckeEigenSymbs = [eta, upPlus[1]]
+heckeEigenSymbs = [eta, plusUp[1]]
+len(plusUp[1])
+#[Out]# 1
+heckeEigenSymbs = [eta, plusUp[1][0]]
+save(heckeEigenSymbs, 'plusHeckeSymbs')
+for phi in heckeEigenSymbs:
+    for q in prime_range(2, 6):
+        print phi.is_Tq_eigen(q)
+minusUp = load('minusUpEigenSymbs.sobj')
+len(minusUp[0])
+#[Out]# 1
+len(minusUp[1])
+#[Out]# 2
+basis = minusUp[1]
+t2Vecs = []
+for phi in basis:
+    t2Vecs.append(phi.hecke(2))
+coeffs = []
+basisMat = Matrix(Zmod(p**57), [phi.vector_of_total_measures() for phi in basis])
+for phi in t2Vecs:
+    b = vector(Zmod(p**57), phi.vector_of_total_measures())
+    x = basisMat.solve_left(b)
+    coeffs.append(x)
+t2Mat = Matrix(Zmod(p**57), coeffs)
+t2MatModp = Matrix(Zmod(p), t2Mat)
+t2MatModp.characteristic_polynomial().factor()
+#[Out]# (x + 1) * (x + 3)
+t2Mat
+#[Out]# [4877578496995642289863021990214341602089 3915952312100673031705272171353102188005]
+#[Out]# [3314016050026243697328481179507028314234 2061315406911586087784675935353285351037]
+I
+#[Out]# [1 0]
+#[Out]# [0 1]
+E = t2Mat + I
+Ered = columnreduce(E, p)[0]
+Ered = column_reduce(E, p)[0]
+Ered = columnReduce(E, p)[0]
+Ered
+#[Out]# [                                       0 4616391897778380760170941581008301461510]
+#[Out]# [                                       0                                        1]
+coeffs = [1, -Ered[0][1]]
+e = vector(Zmod(p**57), coeffs)
+e*Ered
+#[Out]# (0, 0)
+eta = makeEigenSymb(coeffs, basis)
+heckeSymbs = [minusUp[0][0], eta]
+save(heckeSymbs, 'minusHeckeSymbs')
+for phi in heckeSymbs:
+    for q in prime_range(2, 14):
+        print q, phi.is_Tq_eigen(q)
+        
+quit

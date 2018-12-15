@@ -1,0 +1,334 @@
+# IPython log file
+
+get_ipython().magic(u'ls ')
+get_ipython().magic(u'cd ./Desktop/')
+get_ipython().magic(u'cd ./SageCode/')
+get_ipython().magic(u'ls ')
+get_ipython().magic(u'cd ./OverconvergentModularSymbols/')
+get_ipython().magic(u'ls ')
+load("master.sage")
+get_ipython().magic(u'cd ../')
+get_ipython().magic(u'ls ')
+get_ipython().magic(u'cd ./ThesisWorkExamples/')
+get_ipython().magic(u'ls ')
+get_ipython().magic(u'cd ./ExQneg23p5Prec60/')
+get_ipython().magic(u'ls ')
+get_ipython().magic(u'cd ../')
+get_ipython().magic(u'cd ./ExQneg31p3Prec60/')
+get_ipython().magic(u'ls ')
+get_ipython().magic(u'cd ./OMSHeckeEigensymbols/')
+get_ipython().magic(u'ls ')
+upMinus = load("upMinusEigenSymbs.sobj")
+upPlus = load("upPlusEigenSymbs.sobj")
+heckeMinus = load("heckeMinusEigenSymbs.sobj")
+heckePlus = load("heckePlusEigenSymbs.sobj")
+len(upMinus)
+#[Out]# 2
+len(upMinus[Integer(0)])
+for phi in heckeMinus:
+    phi.is_Tq_Hecke(Integer(2))
+for phi in heckeMinus:
+    phi.is_Tq_hecke(Integer(2))
+for phi in heckeMinus:
+    phi.is_Tq_eigen(Integer(2))
+#[Out]# [False, None, None]
+for phi in heckePlus:
+    phi.is_Tq_eigen(Integer(2))
+#[Out]# [True, 381520424476945831628649898808, 62]
+for phi in heckeMinus:
+    phi.is_Tq_eigen(Integer(3))
+#[Out]# [False, None, None]
+for phi in upMinus:
+    phi.is_Tq_eigen(Integer(3))
+#[Out]# [True, 127173474825648610542883299602, 61]
+phi = upMinus[Integer(1)]
+phiT2 = phi.hecke(Integer(2))
+phiT2.is_Tq_eigen(Integer(3))
+#[Out]# [True, 127173474825648610542883299602, 61]
+phiT2.is_Tq_eigen(Integer(2))
+#[Out]# [False, None, None]
+psi = phi + phiT2
+psi.is_Tq_eigen(Integer(3))
+#[Out]# [True, 127173474825648610542883299602, 61]
+p = Integer(3)
+matrixRank = Matrix(Zmod(p) [phi.vector_of_total_measures(), phiT2.vector_of_total_measures()])
+matrixRank = Matrix(Zmod(p), [phi.vector_of_total_measures(), phiT2.vector_of_total_measures()])
+matrixRank()
+matrixRank.rank()
+#[Out]# 2
+phi.vector_of_total_measures()[Integer(0)]
+#[Out]# 0
+phi.vector_of_total_measures()[Integer(1)]
+#[Out]# 886414578886181117965419895
+phiT2.vector_of_total_measures()[Integer(0)]
+#[Out]# 0
+get_ipython().magic(u'ls ')
+get_ipython().magic(u'cd ./TroubleShooting/')
+get_ipython().magic(u'ls ')
+get_ipython().magic(u'cd ../')
+get_ipython().magic(u'ls ')
+get_ipython().magic(u'cd ./TroubleShooting/')
+get_ipython().magic(u'ls ')
+load("TroubleShooting.sage")
+upMat
+#[Out]# [1 0 0]
+#[Out]# [0 1 0]
+#[Out]# [0 0 1]
+p
+#[Out]# 3
+upMatmop = Matrix(Zmod(p), upMat)
+upMatmodp = upMatmop
+upMatmodp.rank()
+#[Out]# 3
+len(eigenVecs
+)
+#[Out]# 2
+A = comunReduce(upMat, p)
+A = columnReduce(A, p)
+A = columnReduce(upMat, p)
+A
+#[Out]# [[1 0 0]
+#[Out]# [0 1 0]
+#[Out]# [0 0 1], []]
+len(eigenVecs)
+#[Out]# 2
+prec
+#[Out]# 62
+upEigenVectors = makeEigenVectors(upMat, -Integer(1), prec, p)
+len(upEigenVectors)
+#[Out]# 0
+upMat
+#[Out]# [1 0 0]
+#[Out]# [0 1 0]
+#[Out]# [0 0 1]
+upMat = load('minusUpMatrix')
+upMat
+#[Out]# [105735295953360774733231241978 168652117281571399187619977743 314338259564979679188906326900]
+#[Out]# [ 68953979595012531468879449700 294906343872889105204606861403 328479222798642906076647814071]
+#[Out]# [133388737055618434065524191893 348387840758280653492010200572 362399209127641783319461694236]
+upEigenVectors = makeEigenVectors(upMat, -Integer(1), prec, p)
+len(upEigenVectors)
+#[Out]# 2
+upEigenSymbs = []
+for eigenVec in upEigenVectors:
+    eigenSymb = makeEigenSymb(eigenVec, basis)
+    upEigenSymbs.append(eigenSymb)
+len(upEigenSymbs)
+#[Out]# 2
+for phi in upEigenSymbs:
+    phi.is_Tq_eigen(Integer(2))
+    phi.is_Tq_eigen(Integer(3))
+#[Out]# [False, None, None]
+phi = upEigenSymbs[Integer(0)]
+phi.vector_of_total_measures()[Integer(0)]
+#[Out]# 0
+phi.vector_of_total_measures()[Integer(1)]
+#[Out]# 26324953682692384080126089558
+upMat
+#[Out]# [105735295953360774733231241978 168652117281571399187619977743 314338259564979679188906326900]
+#[Out]# [ 68953979595012531468879449700 294906343872889105204606861403 328479222798642906076647814071]
+#[Out]# [133388737055618434065524191893 348387840758280653492010200572 362399209127641783319461694236]
+upMatmodp
+#[Out]# [2 1 2]
+#[Out]# [0 2 0]
+#[Out]# [0 1 1]
+upMatmodp.characteristic_polynomial()
+#[Out]# x^3 + x^2 + 2*x + 2
+upMatmodp.characteristic_polynomial().factor()
+#[Out]# (x + 2) * (x + 1)^2
+len(basis)
+#[Out]# 3
+T2vecs = []
+for i in range(Integer(0), Integer(3)):
+    psi = basis[i].hecke(Integer(2))
+    T2vecs.append(psi)
+T2Mat = makeUpMat(basis, T2vecs)
+T2Mat
+#[Out]# [113701331706251975564536970448 211084964070039019382423527092 145787811053023890814609458962]
+#[Out]# [283133507139886651185662016148 248871635692385481584507279540 303401838340169022296633125298]
+#[Out]# [ 76079906604818471003678908366 276394961573057955698902857558  18947457078308374479605648821]
+T2Matmodp = Matrix(Zmod(p), T2Mat)
+T2Matmodp.rank()
+#[Out]# 3
+T2Matmodp.characteristic_polynomial()
+#[Out]# x^3 + 1
+T2Matmodp.characteristic_polynomial().factor()
+#[Out]# (x + 1)^3
+eigenVecs = []
+eigenVecs = makeEigenVectors(T2Mat, -Integer(1), Integer(62), Integer(3))
+len(eigenVecs)
+#[Out]# 2
+eigenSymbs = []
+for iegenVec in eigenVecs:
+dk
+for eigenVec in eigenVecs:
+    eigenSymb = makeEigenSymb(eigenVec, basis)
+    eigenSymbs.append(eigenSymb)
+for phi in eigenSymbs:
+    phi.is_Tq_eigen(Integer(2))
+#[Out]# [False, None, None]
+Integer(3)**(Integer(62))
+#[Out]# 381520424476945831628649898809
+phi = eigenSymbs[Integer(0)]
+phi.is_Tq_eigen(Integer(3))
+#[Out]# [False, None, None]
+phiU3 = phi.hecke(Integer(3))
+phiU3U3 = phiU3.hecke(Integer(3))
+matrix = Matrix(Zmod(p), [phi.vector_of_total_measures(), phiU3.vector_of_total_measures(), phiU3U3.vector_of_total_measures()])
+matrix.rank()
+#[Out]# 2
+matrix = Matrix(Zmod(p), [phi.vector_of_total_measures(), phiU3.vector_of_total_measures()])
+matrix.rank()
+#[Out]# 2
+smallBasis = [phi, phiU3]
+u3vecs = [phiU3, phiU3U3]
+u3Mat = makeUpMat(smallBasis, u3vecs)
+u3Matmodp = Matrix(Zmod(p), u3Mat)
+u3Matmodp.characteristic_polynomial()
+#[Out]# x^2 + 2
+u3Matmodp.characteristic_polynomial().factor()
+#[Out]# (x + 1) * (x + 2)
+eigenVecCoeffs = makeEigenVectors(u3Mat, -Integer(1), Integer(62), p)
+u3Mat
+#[Out]# [0 1]
+#[Out]# [1 0]
+phi.is_Tq_eigen(Integer(3))
+#[Out]# [False, None, None]
+phiT2.is_Tq_eigen(Integer(3))
+#[Out]# [True, 127173474825648610542883299602, 61]
+Integer(3)**(Integer(61))
+#[Out]# 127173474825648610542883299603
+for ell in prime_range(Integer(2), Integer(14)):
+    phiT2.is_Tq_eigen(ell)
+#[Out]# [False, None, None]
+u3Mat
+#[Out]# [0 1]
+#[Out]# [1 0]
+phiU3.is_Tq_eigen(Integer(3))
+#[Out]# [False, None, None]
+phiU3U3 == phi
+#[Out]# True
+phi.is_Tq_eigen(Integer(2))
+#[Out]# [True, 381520424476945831628649898808, 62]
+phiU3.is_Tq_eigen(Integer(2))
+#[Out]# [True, 381520424476945831628649898808, 62]
+psi = phi + phiU3
+psi.is_Tq_eigen(Integer(2))
+#[Out]# [True, 381520424476945831628649898808, 62]
+psi.is_Tq_eigen(Integer(3))
+#[Out]# [True, 1, 62]
+psi = phi - phiU3
+psi.is_Tq_eigen(Integer(3))
+#[Out]# [False, None, None]
+psi.is_Tq_eigen(Integer(2))
+#[Out]# [False, None, None]
+psi.vector_of_total_measures()[Integer(0)]
+#[Out]# 0
+psi.vector_of_total_measures()[Integer(1)]
+#[Out]# 121111434175777272584920020909
+phi.vector_of_total_measures()[Integer(0)]
+#[Out]# 0
+phiU3.vector_of_total_measures()[Integer(0)]
+#[Out]# 0
+eta = phi + phiU3
+eta.vector_of_total_measures()[Integer(0)]
+#[Out]# 0
+eta.is_Tq_eigen(Integer(2))
+#[Out]# [True, 381520424476945831628649898808, 62]
+eta.is_Tq_eigen(Integer(3))
+#[Out]# [True, 1, 62]
+negPhiU3 = phiU3.scale(-Integer(1))
+psi = phi + negPhiU3
+psi.is_Tq_eigen(Integer(2))
+#[Out]# [False, None, None]
+psi.is_Tq_eigen(Integer(3))
+#[Out]# [False, None, None]
+log_text()
+get_ipython().magic(u'logstart')
+get_ipython().magic(u'logstart TroubleShooting -Integer(0)')
+get_ipython().magic(u'logstart')
+get_ipython().magic(u'logstart TroubleShooting -o')
+get_ipython().magic(u'logstart -o TroubleShooting')
+get_ipython().magic(u'pinfo logstart')
+get_ipython().magic(u'logstart -o TroubleShooting')
+get_ipython().magic(u'logstart -o TroubleShooting')
+get_ipython().magic(u'pinfo logstart')
+get_ipython().magic(u'logstart -o TroubleShooting')
+get_ipython().magic(u'ls ')
+get_ipython().magic(u'logstop')
+rankMat = Matrix(Zmod(p), [psi.vector_of_total_measures(), eta.vector_of_total_measures()])
+rankMat.rank()
+#[Out]# 2
+psiU3 = psi.hecke(Integer(3))
+rankMat = Matrix(Zmod(p), [psi.vector_of_total_measures(), eta.vector_of_total_measures(), psiU3])
+rankMat = Matrix(Zmod(p), [psi.vector_of_total_measures(), eta.vector_of_total_measures(), psiU3.vector_of_total_measures()])
+rankMat.rank()
+#[Out]# 2
+psi.is_Tq_eigen(Integer(3))
+#[Out]# [False, None, None]
+psiU3.is_Tq_eigen(Integer(3))
+#[Out]# [False, None, None]
+eta.is_Tq_eigen(Integer(3))
+#[Out]# [True, 1, 62]
+smallBasis = [eta, psi]
+u3Vecs = [eta, psiU3]
+u3Matrix = makeUpMat(basis, upVecs)
+u3Matrix
+#[Out]# [105735295953360774733231241978 168652117281571399187619977743 314338259564979679188906326900]
+#[Out]# [ 68953979595012531468879449700 294906343872889105204606861403 328479222798642906076647814071]
+#[Out]# [133388737055618434065524191893 348387840758280653492010200572 362399209127641783319461694236]
+u3Matrix = makeUpMat(smallBasis, u3Vecs)
+u3Matrix
+#[Out]# [                             1                              0]
+#[Out]# [                             0 381520424476945831628649898808]
+psi.is_Tq_eigen(Integer(3))
+#[Out]# [False, None, None]
+psiTest = psi.scale(-Integer(1))
+psiU3 == psiTest
+#[Out]# False
+Integer(3)**(Integer(62))
+#[Out]# 381520424476945831628649898809
+psiTest = psi.scale(Integer(3)**(Integer(62)) - Integer(1))
+psiU3 == psiTest
+#[Out]# False
+psiT2 = psi.hecke(Integer(2))
+etaT2 = eta.hecke(Integer(2))
+t2Vecs = [etaT2, psiT2]
+t2Matrix = makeUpMat(smallBasis, t2Vecs)
+t2Matrix
+#[Out]# [381520424476945831628649898808                              0]
+#[Out]# [                             0 381520424476945831628649898808]
+eta.data[Integer(0)].moment[Integer(0)]
+eta.data[Integer(0)].moment(Integer(0))
+#[Out]# 0
+psi.data[Integer(0)].moment(Integer(0))
+#[Out]# 0
+etaT2.data[Integer(0)].moment(Integer(0))
+#[Out]# 0
+psiT2.data[Integer(0)].moment(Integer(0))
+#[Out]# 0
+eta.is_Tq_eigen(Integer(2))
+#[Out]# [True, 381520424476945831628649898808, 62]
+c = Integer(0)/Integer(0)
+etaT2.data[Integer(1)].moment(Integer(0))
+#[Out]# 135605387064448735539743166334
+eta.data[Integer(1)].moment(Integer(0))
+#[Out]# 245915037412497096088906732475
+psi.data[Integer(1)].moment(Integer(0))
+#[Out]# 121111434175777272584920020909
+etaT2.data[Integer(1)].moment(Integer(0))/eta.data[Integer(1)].moment(Integer(0))
+#[Out]# 135605387064448735539743166334/245915037412497096088906732475
+etaT2.vector_of_total_measures()[Integer(1)]
+#[Out]# 135605387064448735539743166334
+(psiT2 - psi.scale(-Integer(1))).is_zero()
+#[Out]# True
+(psiU3 - psi.scale(-Integer(1))).is_zero()
+#[Out]# True
+psiT5 = psi.hecke(Integer(5))
+(psiT5 - psi.scale(-Integer(1))).is_zero()
+#[Out]# True
+psiT11 = psi.hecke(Integer(11))
+psiT11.is_zero()
+#[Out]# True
+## even though the code version of checking says psi is not an eigensymbol, checking by hand says that psi is an eigensymbol
+quit()
