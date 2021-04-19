@@ -1,6 +1,7 @@
 C.<zeta25> = CyclotomicField(25)
 g = (zeta25 - 1).minpoly()
 
+# create base field in sage
 p = 5
 prec = 66
 ramInd = 20
@@ -9,13 +10,12 @@ pAdics = Qp(p, prec)
 Rp.<X> = PolynomialRing(pAdics)
 g = Rp(g)
 CpUnif.<D> = pAdics.extension(g)
-Zeta25 = D + 1 ## THIS LINE IS A CHANGE TO THE OLD CODE
+Zeta25 = D + 1
 
 d = 17
-logN = 2*prec*ramInd + 1
-## THIS IS THE NUMBER OF TERMS IN THE SUM DEFINING LOG THAT WILL BE SUMMED
-## I THINK 2*prec + 1 IS THE RIGHT NUMBER OF TERMS TO SUM BUT I'M NOT SURE
+logN = 2*prec*ramInd + 1 # number of terms in sum defining log that will be summed
 
+# class for top field
 class Mp:
     def __init__(self, a, b):
         self._a = CpUnif(a); self._b = CpUnif(b)
